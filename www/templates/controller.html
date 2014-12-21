@@ -1,12 +1,13 @@
-<div ng-controller="twoY">
+<ion-content scroll="false" ng-controller="twoY">
   <div class="row">
-    <div class="col y-controller steerer" on-drag="dragSteerer()">Steer</div>
+    <div class="col y-controller steerer">Steer</div>
     <div class="col">
       <div ng-click="sayHi()">Controller Hi!?</div>
-      <div>X: <span ng-bind="x"></span></div>
-      <div>Y: <span ng-bind="y"></span></div>
+      <div class="sending">Sending</div>
+      <div>X: <span ng-bind="position.x"></span></div>
+      <div>Y: <span ng-bind="position.y"></span></div>
     </div>
-    <div class="col y-controller accellerator" on-drag="dragAccellerator()">Accel</div>
+    <div class="col y-controller accelerator">Accel</div>
   </div>
-</div>
+</ion-content>
 
