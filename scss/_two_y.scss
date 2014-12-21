@@ -1,0 +1,19 @@
+
+[ng-controller=twoY] {
+  > .row {
+    height: 100%;
+  }
+}
+.y-controller {
+  height: 100%;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.steerer {
+  background: green;
+}
+.accellerator {
+  background: blue;
+}
