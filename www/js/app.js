@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 var app = angular.module('potatoeControl', ['ionic', 'potatoeController.controllers']);
 
-app.config(function($stateProvider) {
+app.config(function($stateProvider, $ionicConfigProvider) {
 
   $stateProvider.state('config', {
     url: '/config',
@@ -14,6 +14,7 @@ app.config(function($stateProvider) {
         templateUrl: 'templates/config.html'
       }
     }
+
   })
   .state('twoy', {
     url: '/twoy',
@@ -23,6 +24,9 @@ app.config(function($stateProvider) {
       }
     }
   });
+
+  // Put android tabs at the bottom
+  $ionicConfigProvider.platform.android.tabs.position("bottom");
 
 });
 

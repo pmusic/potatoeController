@@ -1,7 +1,8 @@
 /* Controller for the controller with two vertical pads */
-Controllers.controller('twoY', function($scope, $ionicGesture) {
+Controllers.controller('twoY', function($scope, $ionicGesture, Sender) {
 
   $scope.position = {x: 0, y: 0};
+  $scope.sending = false;
 
   var steerers = angular.element(document.querySelector('.y-controller'));
 
@@ -13,19 +14,29 @@ Controllers.controller('twoY', function($scope, $ionicGesture) {
   $ionicGesture.on('touchmove', preventDefault, steerers);
   $ionicGesture.on('touchend', preventDefault, steerers);
 
-
   var steerer_div = angular.element(document.querySelector('.steerer'));
   var accelerator_div = angular.element(document.querySelector('.accelerator'));
 
-  $ionicGesture.on('touchstart', function(evt) {
-    console.log('touchstart!', evt);
-  },
-  steerer_div);
   $ionicGesture.on('touchmove', _.partial(touchmove_callback, 'x'), steerer_div);
   $ionicGesture.on('touchmove', _.partial(touchmove_callback, 'y'), accelerator_div);
 
+  $ionicGesture.on('touchstart', _.partial(touchmove_callback, 'x'), steerer_div);
+  $ionicGesture.on('touchstart', _.partial(touchmove_callback, 'y'), accelerator_div);
+
+  $ionicGesture.on('touchend', _.partial(touchend_callback, 'x'), steerer_div);
+  $ionicGesture.on('touchend', _.partial(touchend_callback, 'y'), accelerator_div);
+
   $scope.sayHi = function() {
     alert('saying hi!!!');
+  };
+
+  $scope.toggleSending = function() {
+    console.log('toggleSending. arguments: ', arguments);
+    if ($scope.sending) {
+      Sender.startSending();
+    } else {
+      Sender.stopSending();
+    }
   };
 
   function echoPosition() {
@@ -44,6 +55,15 @@ Controllers.controller('twoY', function($scope, $ionicGesture) {
     });
 
     return false;
+  }
+
+  function touchend_callback(dimension, evt) {
+    if (evt.targetTouches.length === 0) {
+      console.log('No more touches. Setting ' + dimension + ' to 0');
+      $scope.$apply(function() {
+        $scope.position[dimension] = 0;
+      });
+    }
   }
 
   function touchrelease_callback(dimension, evt) {

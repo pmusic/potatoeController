@@ -2,10 +2,19 @@
   <div class="row">
     <div class="col y-controller steerer">Steer</div>
     <div class="col">
-      <div ng-click="sayHi()">Controller Hi!?</div>
-      <div class="sending">Sending</div>
-      <div>X: <span ng-bind="position.x"></span></div>
-      <div>Y: <span ng-bind="position.y"></span></div>
+      <div class="list">
+        <div class="item">
+          Sending
+          <label class="toggle">
+            <input type="checkbox" ng-model="sending" ng-change="toggleSending()">
+            <div class="track">
+              <div class="handle"></div>
+            </div>
+          </label>
+        </div>
+        <div>X: <span ng-bind="position.x"></span></div>
+        <div>Y: <span ng-bind="position.y"></span></div>
+      </div>
     </div>
     <div class="col y-controller accelerator">Accel</div>
   </div>
