@@ -14,6 +14,8 @@ Controllers.controller('twoY', function($scope, $ionicGesture, Sender) {
   $ionicGesture.on('touchmove', preventDefault, steerers);
   $ionicGesture.on('touchend', preventDefault, steerers);
 
+  // Set up touch event listeners
+  //
   var steerer_div = angular.element(document.querySelector('.steerer'));
   var accelerator_div = angular.element(document.querySelector('.accelerator'));
 
@@ -26,11 +28,9 @@ Controllers.controller('twoY', function($scope, $ionicGesture, Sender) {
   $ionicGesture.on('touchend', _.partial(touchend_callback, 'x'), steerer_div);
   $ionicGesture.on('touchend', _.partial(touchend_callback, 'y'), accelerator_div);
 
-  $scope.sayHi = function() {
-    alert('saying hi!!!');
-  };
 
   $scope.toggleSending = function() {
+    /** Toggle whether to send messsages to Potatoe */
     console.log('toggleSending. arguments: ', arguments);
     if ($scope.sending) {
       Sender.startSending();
@@ -58,6 +58,7 @@ Controllers.controller('twoY', function($scope, $ionicGesture, Sender) {
   }
 
   function touchend_callback(dimension, evt) {
+    /** called when a touch ends (i.e. a finger is lifted off the screen) */
     if (evt.targetTouches.length === 0) {
       console.log('No more touches. Setting ' + dimension + ' to 0');
       $scope.$apply(function() {
@@ -72,7 +73,7 @@ Controllers.controller('twoY', function($scope, $ionicGesture, Sender) {
 
   function drag_position(evt) {
     /* Returns the position of the touch in the div, normalized to -127--128
-     * TODO
+     * TODO: Don't assume the div is at the top of the screen
      */
 
     // TODO: Only calculate this once

@@ -1,5 +1,6 @@
-
 [ng-controller=twoY] {
+  /* make room for the tabs at the bottom. There's probably some ionic class to handle htis */
+  padding-bottom: 50px; 
   > .row {
     height: 100%;
   }
@@ -11,19 +12,13 @@
   text-align: center;
 }
 
+.info {
+  text-align: center;
+}
+
 .steerer {
   background: green;
 }
-
 .accelerator {
   background: blue;
 }
-
-.sneding-switch {
-  .not-sending {
-
-  }
-
-  .sending {
-
-  }

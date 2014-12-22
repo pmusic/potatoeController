@@ -1,22 +1,22 @@
 <ion-content scroll="false" ng-controller="twoY">
   <div class="row">
-    <div class="col y-controller steerer">Steer</div>
-    <div class="col">
-      <div class="list">
-        <div class="item">
-          Sending
-          <label class="toggle">
-            <input type="checkbox" ng-model="sending" ng-change="toggleSending()">
-            <div class="track">
-              <div class="handle"></div>
-            </div>
-          </label>
-        </div>
-        <div>X: <span ng-bind="position.x"></span></div>
-        <div>Y: <span ng-bind="position.y"></span></div>
-      </div>
+    <div class="col y-controller steerer">
+      <div>Steer</div>
+      <div ng-bind="position.x"></div>
     </div>
-    <div class="col y-controller accelerator">Accel</div>
+    <div class="col info">
+      <div>Sending</div>
+      <label class="toggle">
+        <input type="checkbox" ng-model="sending" ng-change="toggleSending()">
+        <div class="track">
+          <div class="handle"></div>
+        </div>
+      </label>
+    </div>
+    <div class="col y-controller accelerator">
+      <div>Accel</div>
+      <div ng-bind="position.y"></div>
+    </div>
   </div>
 </ion-content>
 
