@@ -20,7 +20,7 @@ app.config(function($stateProvider, $ionicConfigProvider) {
     url: '/twoy',
     views: {
       twoy: {
-        templateUrl: 'templates/controller.html'
+        templateUrl: 'templates/two_y_controller.html'
       }
     }
   });
