@@ -3,6 +3,7 @@ Controllers.controller('twoY', function($scope, $ionicGesture, Sender) {
 
   $scope.position = {x: 0, y: 0};
   $scope.sending = false;
+  $scope.bt_connected = Sender.is_connected();
 
   var steerers = angular.element(document.querySelector('.y-controller'));
 
@@ -37,6 +38,19 @@ Controllers.controller('twoY', function($scope, $ionicGesture, Sender) {
     } else {
       Sender.stopSending();
     }
+  };
+
+  $scope.toggleConnected = function() {
+    console.log('toggleConnected');
+    /* Connect / disconnect from Potatoe */
+    Sender.connect().then(function it_connected() {
+      // noop
+    }, function it_did_not_connect(why) {
+      $scope.$apply(function() {
+        $scope.connected = false;
+      });
+      alert(why);
+    });
   };
 
   function echoPosition() {
