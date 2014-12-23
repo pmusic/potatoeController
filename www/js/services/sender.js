@@ -15,7 +15,7 @@ app.factory('Sender', function () {
        * Returns a promise */
 
       var promise = new Promise(function(resolve, reject) {
-        var uuid = localStorage.getItem(POTATOE_ADDRESS_KEY);
+        var uuid = Sender.getAddress();
         if(!uuid) {
           connected = false;
           reject('Potatoe address not set. Set on config page');
@@ -70,8 +70,15 @@ app.factory('Sender', function () {
     send: function() {
       console.log('sending: ', position);
       //TODO
-    }
+    },
 
+    setAddress: function(address) {
+      localStorage.setItem(POTATOE_ADDRESS_KEY, address);
+    },
+
+    getAddress: function() {
+      return localStorage.getItem(POTATOE_ADDRESS_KEY);
+    }
   };
 
   return Sender;
