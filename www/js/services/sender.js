@@ -1,7 +1,5 @@
-app.factory('Sender', function () {
+app.factory('Sender', function (Settings) {
 
-  // keys for stuff stored in localStorage
-  var POTATOE_ADDRESS_KEY = 'potatoe_address_key';
 
   var timer = null,
     timer_interval = 500,
@@ -15,7 +13,7 @@ app.factory('Sender', function () {
        * Returns a promise */
 
       var promise = new Promise(function(resolve, reject) {
-        var uuid = Sender.getAddress();
+        var uuid = Settings.getAddress();
         if(!uuid) {
           connected = false;
           reject('Potatoe address not set. Set on config page');
@@ -70,15 +68,9 @@ app.factory('Sender', function () {
     send: function() {
       console.log('sending: ', position);
       //TODO
+      bluetoothSerial.send();
     },
 
-    setAddress: function(address) {
-      localStorage.setItem(POTATOE_ADDRESS_KEY, address);
-    },
-
-    getAddress: function() {
-      return localStorage.getItem(POTATOE_ADDRESS_KEY);
-    }
   };
 
   return Sender;

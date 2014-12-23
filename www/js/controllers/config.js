@@ -1,10 +1,10 @@
 /* Controller for configuration page */
-Controllers.controller('config', function($scope, Sender) {
+Controllers.controller('config', function($scope, Settings) {
 
-  $scope.address = Sender.getAddress();
+  $scope.address = Settings.getAddress();
 
   $scope.addressChange = function() {
-    Sender.setAddress($scope.address);
+    Settings.setAddress($scope.address);
   };
 
 });
