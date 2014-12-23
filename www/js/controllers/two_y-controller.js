@@ -41,31 +41,34 @@ Controllers.controller('twoY', function($scope, $ionicGesture, Sender) {
   };
 
   $scope.toggleConnected = function() {
+    /* Connect/disconnect from bluetooth */
     console.log('toggleConnected');
-    /* Connect / disconnect from Potatoe */
-    Sender.connect().then(function it_connected() {
-      // noop
-    }, function it_did_not_connect(why) {
-      $scope.$apply(function() {
-        $scope.connected = false;
-      });
-      alert(why);
-    });
-  };
 
-  function echoPosition() {
-    console.log($scope.position);
-  }
+
+    if (Sender.is_connected()) {
+
+    } else { // not connected; connect
+      Sender.connect().then(function it_connected() {
+        // noop
+      }, function it_did_not_connect(why) {
+        $scope.$apply(function() {
+          $scope.connected = false;
+        });
+        alert(why);
+      });
+    }
+  };
 
   function touchmove_callback(dimension, evt) {
     /** dimension: 'x' or 'y' */
 
     evt.preventDefault();
     var position = drag_position(evt);
-    console.log('setting ' + dimension + ' to: ' + position);
+    //console.log('setting ' + dimension + ' to: ' + position);
 
     $scope.$apply(function() {
       $scope.position[dimension] = position;
+      Sender.setControl($scope.position);
     });
 
     return false;
@@ -77,6 +80,7 @@ Controllers.controller('twoY', function($scope, $ionicGesture, Sender) {
       console.log('No more touches. Setting ' + dimension + ' to 0');
       $scope.$apply(function() {
         $scope.position[dimension] = 0;
+        Sender.setControl($scope.position);
       });
     }
   }
