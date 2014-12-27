@@ -20,6 +20,7 @@
     <!-- is this really how you include files in angular? There's no 
     module system? -->
     <script src="js/controllers/two_y-controller.js"></script>
+    <script src="js/controllers/tilt-controller.js"></script>
     <script src="js/controllers/config.js"></script>
     <script src="js/services/sender.js"></script>
     <script src="js/services/settings.js"></script>
@@ -29,6 +30,10 @@
 
       <ion-tab title="twoY" icon="ion-arrow-move" ui-sref="twoy">
         <ion-nav-view name="twoy"></ion-nav-view>
+      </ion-tab>
+
+      <ion-tab title="Tilt" icon="ion-arrow-move" ui-sref="tilt">
+        <ion-nav-view name="tilt"></ion-nav-view>
       </ion-tab>
 
       <ion-tab title="Config" icon="ion-gear-a" ui-sref="config">

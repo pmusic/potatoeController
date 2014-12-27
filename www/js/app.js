@@ -23,6 +23,13 @@ app.config(function($stateProvider, $ionicConfigProvider) {
         templateUrl: 'templates/two_y_controller.html'
       }
     }
+  }).state('tilt', {
+    url: '/tilt',
+    views: {
+      tilt: {
+        templateUrl: 'templates/tilt_controller.html'
+      }
+    }
   });
 
   // Put android tabs at the bottom
