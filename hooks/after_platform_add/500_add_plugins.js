@@ -19,7 +19,7 @@ for (var c = 0; c < plugins.length; c++) {
     if (error !== null) {
       sys.print(stderr);
     } else {
-      sys.print(stsdout);
+      sys.print(stdout);
     }
   });
 }
