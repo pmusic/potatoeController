@@ -55,7 +55,7 @@ app.factory('Sender', function (Settings) {
       return connected;
     },
 
-    startSending: function(ms) {
+    startSending: function() {
       console.log('starting sending!');
 
       // clear the timer, just in case an old one still exists

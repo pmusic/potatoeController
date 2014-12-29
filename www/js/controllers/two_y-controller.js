@@ -34,7 +34,9 @@ Controllers.controller('twoY', function($scope, $ionicGesture, Sender) {
     /** Toggle whether to send messsages to Potatoe */
     console.log('toggleSending. arguments: ', arguments);
     if ($scope.sending) {
-      Sender.startSending();
+      Sender.startSending(function() {
+        return $scope.position;
+      },100);
     } else {
       Sender.stopSending();
     }
